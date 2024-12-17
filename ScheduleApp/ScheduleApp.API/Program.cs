@@ -1,10 +1,14 @@
-using DotNetEnv;
+using DotNetEnv; 
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using ScheduleApp.Application.Interfaces;
+using ScheduleApp.Application.Services;
 using ScheduleApp.Application.Validation;
-using ScheduleApp.Domain.Entities;
 using ScheduleApp.Infrastructure.Data;
+using ScheduleApp.Infrastructure.Profiles;
+using ScheduleApp.Infrastructure.Repositories;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,11 +24,16 @@ var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Pa
 builder.Services.AddDbContext<ScheduleAppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.AddAutoMapper(typeof(ContactProfile));
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<ContactValidator>();
 
+builder.Services.AddScoped<IContactRepository, ContactRepository>(); 
+builder.Services.AddScoped<IContactService, ContactService>();       
+builder.Services.AddOpenApi();
 builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -32,13 +41,12 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
