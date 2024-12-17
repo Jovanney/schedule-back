@@ -1,34 +1,77 @@
+# .NET Core / .NET 6+ build output
 bin/
 obj/
 out/
 
-.vscode/
-.idea/
-*.csproj.user
-
-*.pdb
-*.mdb
-*.db
-*.db-shm
-*.db-wal
-*.sqlite
-*.sqlite3
-
-Migrations/
-
-*.pfx
-*.p12
-
-app.publish/
-publish/
-
-
-*.log
-*.suo
+# User-specific files
 *.user
+*.suo
 *.userosscache
 *.sln.docstates
+*.sw?
 
+# Debug and Release configuration files
+appsettings.Development.json
+appsettings.Test.json
+appsettings.Production.json
+
+# Environment variables
 .env
 .env.*.local
-*.swp
+
+# Logs
+*.log
+logs/
+debug.log
+error.log
+
+# Database and migrations
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+
+# VS Code files
+.vscode/
+.vscode/*
+
+# Rider / JetBrains IDE files
+.idea/
+.idea_modules/
+
+# Visual Studio files
+*.vs/
+*.vssscc
+*.vspscc
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# Backup and cache files
+*.bak
+*.cache
+*.tmp
+*.temp
+*.pid
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+Dockerfile*
+*.container
+volumes/
+
+# Node.js (if integrating with a front-end like Vue.js)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
