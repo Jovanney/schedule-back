@@ -1,3 +1,4 @@
+
 using DotNetEnv; 
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -20,6 +21,8 @@ var dbUser = Environment.GetEnvironmentVariable("DB_USER");
 var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 
 var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Password={dbPassword};TrustServerCertificate=True;";
+
+var useInMemoryDb = Environment.GetEnvironmentVariable("USE_INMEMORY_DB");
 
 builder.Services.AddDbContext<ScheduleAppDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -50,3 +53,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public partial class Program { }
