@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleApp.Domain", "Sched
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleApp.Infrastructure", "ScheduleApp.Infrastructure\ScheduleApp.Infrastructure.csproj", "{3343BB49-210D-4542-8159-A253394C29BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleApp.Tests", "ScheduleApp.Tests\ScheduleApp.Tests.csproj", "{89747FFC-43DE-4FD7-B6DD-F85DC987B8A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{3343BB49-210D-4542-8159-A253394C29BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3343BB49-210D-4542-8159-A253394C29BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3343BB49-210D-4542-8159-A253394C29BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89747FFC-43DE-4FD7-B6DD-F85DC987B8A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89747FFC-43DE-4FD7-B6DD-F85DC987B8A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89747FFC-43DE-4FD7-B6DD-F85DC987B8A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89747FFC-43DE-4FD7-B6DD-F85DC987B8A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
