@@ -9,14 +9,25 @@ public class ContactRepository : IContactRepository
 {
     private readonly ScheduleAppDbContext _context;
 
+    
     public ContactRepository(ScheduleAppDbContext context)
     {
         _context = context;
     }
 
-    public async Task<IEnumerable<Contact>> GetAllAsync()
+    public async Task<IEnumerable<Contact>> GetAllAsync(string? search)
     {
-        return await _context.Contacts.ToListAsync();
+        var query = _context.Contacts.AsQueryable();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(c =>
+                c.Name.Contains(search) ||
+                c.Email.Contains(search) ||
+                c.PhoneNumber.Contains(search));
+        }
+
+        return await query.ToListAsync();
     }
 
     public async Task<Contact?> GetByIdAsync(Guid id)

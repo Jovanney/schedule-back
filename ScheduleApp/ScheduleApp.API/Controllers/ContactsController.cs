@@ -16,9 +16,9 @@ public class ContactsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+   public async Task<IActionResult> GetAll([FromQuery] string? search)
     {
-        var contacts = await _service.GetAllContactsAsync();
+        var contacts = await _service.GetAllContactsAsync(search);
         return Ok(contacts);
     }
 

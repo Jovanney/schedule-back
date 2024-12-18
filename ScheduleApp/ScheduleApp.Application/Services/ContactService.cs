@@ -16,11 +16,21 @@ public class ContactService : IContactService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<ContactDto>> GetAllContactsAsync()
+   public async Task<IEnumerable<ContactDto>> GetAllContactsAsync(string? search)
+{
+    var contacts = await _repository.GetAllAsync(search);
+
+    if (!string.IsNullOrEmpty(search))
     {
-        var contacts = await _repository.GetAllAsync();
-        return _mapper.Map<IEnumerable<ContactDto>>(contacts);
+        contacts = contacts.Where(c =>
+            c.Name.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+            c.Email.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+            c.PhoneNumber.Contains(search, StringComparison.OrdinalIgnoreCase));
     }
+
+    return _mapper.Map<IEnumerable<ContactDto>>(contacts);
+}
+
 
     public async Task<ContactDto?> GetContactByIdAsync(Guid id)
     {
